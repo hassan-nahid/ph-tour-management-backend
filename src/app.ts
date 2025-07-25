@@ -17,10 +17,12 @@ app.use(expressSession({
     saveUninitialized: false,
 }))
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 app.use(cookieParser())
 app.use(passport.initialize())
 app.use(passport.session())
+
 import "./app/config/passport"
 
 app.use("/api/v1", router)
