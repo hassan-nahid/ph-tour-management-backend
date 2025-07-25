@@ -8,16 +8,23 @@ import { handleCastError } from "../helpers/handleCastError"
 import { handleZodError } from "../helpers/handleZodError"
 import { handleValidationError } from "../helpers/handleValidationError"
 import { IErrorSources } from "../interfaces/error.Types"
+import { deleteImageFromCloudinary } from "../config/cloudinary.config"
 
 
 
 
+export const globalErrorHandler = async (err: any, req: Request, res: Response, next: NextFunction) => {
+    
+    if (req.file) {
+        await deleteImageFromCloudinary(req.file.path)
+    }
 
+    if (req.files && Array.isArray(req.files) && req.files.length) {
+        const imageUrls = (req.files as Express.Multer.File[]).map(file => file.path)
 
-
-
-
-export const globalErrorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
+        await Promise.all(imageUrls.map(url => deleteImageFromCloudinary(url)))
+    }
+    
     let errorSources: IErrorSources[] = []
 
     let statusCode = 500
