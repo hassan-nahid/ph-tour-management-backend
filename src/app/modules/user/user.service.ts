@@ -38,6 +38,7 @@ const updateUser = async (userId: string, payload: Partial<IUser>, decodedToken:
     }
 
 
+
     const ifUserExist = await User.findById(userId);
 
     if (!ifUserExist) {
@@ -49,11 +50,13 @@ const updateUser = async (userId: string, payload: Partial<IUser>, decodedToken:
         }
 
 
+
     if (payload.role) {
 
         if (decodedToken.role === Role.USER || decodedToken.role === Role.GUIDE) {
             throw new AppError(httpStatus.FORBIDDEN, "Your are not authorized")
         }
+
     }
 
     if (payload.isActive || payload.isDeleted || payload.isVerified) {
@@ -61,6 +64,7 @@ const updateUser = async (userId: string, payload: Partial<IUser>, decodedToken:
             throw new AppError(httpStatus.FORBIDDEN, "Your are not authorized")
         }
     }
+
 
     const newUpdatedUser = await User.findByIdAndUpdate(userId, payload, { new: true, runValidators: true })
 

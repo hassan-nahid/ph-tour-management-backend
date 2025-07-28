@@ -3,12 +3,14 @@ import { uploadBufferToCloudinary } from "../../config/cloudinary.config";
 import AppError from "../../errorHelpers/AppError";
 import { generatePdf, IInvoiceData } from "../../utils/invoice";
 import { sendEmail } from "../../utils/sendEmail";
+
 import { BOOKING_STATUS } from "../booking/booking.interface";
 import { Booking } from "../booking/booking.model"
 import { ISSLCommerz } from "../sslCommerz/sslCommerz.interface";
 import { SSLService } from "../sslCommerz/sslCommerz.service";
 import { ITour } from "../tour/tour.interface";
 import { IUser } from "../user/user.interface";
+
 import { PAYMENT_STATUS } from "./payment.interface";
 import { Payment } from "./payment.model";
 import httpStatus from "http-status-codes"
@@ -92,6 +94,7 @@ const successPayment = async (query: Record<string, string>) => {
                 }
             ]
         })
+
 
         await session.commitTransaction();
         session.endSession();
@@ -177,4 +180,5 @@ export const PaymentService = {
     cancelPayment,
     initPayment,
     getInvoiceDownloadUrl
+
 }

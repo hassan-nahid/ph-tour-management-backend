@@ -1,5 +1,7 @@
 import { Response } from "express";
+
 import { envVars } from "../config/env";
+
 export interface AuthTokens {
     accessToken?: string;
     refreshToken?: string;
@@ -11,6 +13,7 @@ export const setAuthCookie = (res: Response, tokenInfo: AuthTokens) => {
             httpOnly: true,
             secure: envVars.NODE_ENV === "production",
             sameSite: "none"
+
         })
     }
     if (tokenInfo.refreshToken) {
@@ -18,6 +21,7 @@ export const setAuthCookie = (res: Response, tokenInfo: AuthTokens) => {
             httpOnly: true,
             secure: envVars.NODE_ENV === "production",
             sameSite: "none"
+
 
         })
     }

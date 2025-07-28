@@ -28,6 +28,7 @@ const bookingSchema = new Schema<IBooking>({
     }
 },{
     timestamps: true
+nt
 })
 
 export const Booking = model<IBooking>("Booking",bookingSchema)

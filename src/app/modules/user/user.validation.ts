@@ -40,6 +40,8 @@ export const updateUserZodSchema = z.object({
         .string({ invalid_type_error: "Name must be string" })
         .min(2, { message: "Name must be at least 2 characters long." })
         .max(50, { message: "Name cannot exceed 50 characters." }).optional(),
+
+
     phone: z
         .string({ invalid_type_error: "Phone Number must be string" })
         .regex(/^(?:\+8801\d{9}|01\d{9})$/, {

@@ -23,6 +23,7 @@ app.use(cors({
     origin: envVars.FRONTEND_URL,
     credentials: true
 }))
+
 app.use(cookieParser())
 app.use(passport.initialize())
 app.use(passport.session())

@@ -43,6 +43,7 @@ const moduleRoutes = [
         path: "/stats",
         route: StatsRoutes
     },
+
 ]
 
 

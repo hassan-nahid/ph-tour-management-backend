@@ -2,6 +2,7 @@
 import { envVars } from "../../config/env"
 import AppError from "../../errorHelpers/AppError"
 import { Payment } from "../payment/payment.model"
+
 import { ISSLCommerz } from "./sslCommerz.interface"
 import axios from "axios"
 import httpStatus from "http-status-codes"
@@ -19,6 +20,7 @@ const sslPaymentInit = async (payload: ISSLCommerz) => {
             fail_url: `${envVars.SSL.SSL_FAIL_BACKEND_URL}?transactionId=${payload.transactionId}&amount=${payload.amount}&status=fail`,
             cancel_url: `${envVars.SSL.SSL_CANCEL_BACKEND_URL}?transactionId=${payload.transactionId}&amount=${payload.amount}&status=cancel`,
             ipn_url: envVars.SSL.SSL_IPN_URL,
+
             shipping_method: "N/A",
             product_name: "Tour",
             product_category: "Service",
@@ -49,6 +51,7 @@ const sslPaymentInit = async (payload: ISSLCommerz) => {
         })
 
         return response.data;
+
     } catch (error: any) {
         throw new AppError(httpStatus.BAD_REQUEST, error.message)
     }
@@ -70,4 +73,5 @@ const validatePayment =  async (payload: any) => {
 export const SSLService = {
     sslPaymentInit,
     validatePayment
+
 }

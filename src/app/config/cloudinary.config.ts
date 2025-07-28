@@ -3,6 +3,7 @@ import { envVars } from "./env"
 import AppError from "../errorHelpers/AppError";
 import stream from "stream"
 
+
 cloudinary.config({
     cloud_name: envVars.CLOUDINARY.CLOUDINARY_CLOUD_NAME,
     api_key: envVars.CLOUDINARY.CLOUDINARY_API_KEY,
@@ -35,6 +36,7 @@ export const uploadBufferToCloudinary = async (buffer: Buffer, fileName: string)
         throw new AppError(401, `Error uploading file ${error.message}`)
     }
 }
+
 
 export const deleteImageFromCloudinary = async (url: string) => {
     try {

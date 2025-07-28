@@ -14,4 +14,5 @@ export interface IBooking {
     guestCount: number,
     status: BOOKING_STATUS,
     createdAt?: Date
+
 }

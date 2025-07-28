@@ -5,6 +5,7 @@ import { envVars } from "../../config/env";
 import { sendResponse } from "../../utils/sendResponse";
 import { SSLService } from "../sslCommerz/sslCommerz.service";
 
+
 const initPayment = catchAsync(async (req: Request, res: Response) => {
     const bookingId = req.params.bookingId;
     const result = await PaymentService.initPayment(bookingId as string)
@@ -65,6 +66,7 @@ const validatePayment = catchAsync(
 
 
 
+
 export const PaymentController = {
     initPayment,
     successPayment,
@@ -72,5 +74,6 @@ export const PaymentController = {
     cancelPayment,
     getInvoiceDownloadUrl,
     validatePayment
+
 
 }
