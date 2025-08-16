@@ -8,20 +8,24 @@ const tourTypeSchema = new Schema<ITourType>({
 })
 
 export const TourType = model<ITourType>("TourType",tourTypeSchema)
+
 const tourSchema = new Schema<ITour>({
-    title: {type: String, required: true},
-    slug: {type: String, unique: true},
-    description: {type: String},
-    images: {type: [String], default: []},
-    location: {type: String},
-    costFrom: {type:Number},
-    startDate: {type:Date},
-    included:{type: [String], default: []},
-    excluded:{type: [String], default: []},
-    amenities:{type: [String], default: []},
-    tourPlan: {type: [String], default: []},
-    maxGuest: {type: Number},
-    minAge: {type: Number},
+    title: { type: String, required: true },
+    slug: { type: String, unique: true },
+    description: { type: String },
+    images: { type: [String], default: [] },
+    location: { type: String },
+    costFrom: { type: Number },
+    startDate: { type: Date },
+    endDate: { type: Date },
+    departureLocation: { type: String },
+    arrivalLocation: { type: String },
+    included: { type: [String], default: [] },
+    excluded: { type: [String], default: [] },
+    amenities: { type: [String], default: [] },
+    tourPlan: { type: [String], default: [] },
+    maxGuest: { type: Number },
+    minAge: { type: Number },
     division: {
         type: Schema.Types.ObjectId,
         ref: "Division",
@@ -32,8 +36,7 @@ const tourSchema = new Schema<ITour>({
         ref: "TourType",
         required: true
     }
-
-},{
+}, {
     timestamps: true
 })
 
